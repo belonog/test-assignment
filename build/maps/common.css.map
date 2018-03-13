@@ -1,0 +1,1 @@
+{"version":3,"sources":["common.scss"],"names":[],"mappings":"AAEA,EACI,MAAA","file":"../style/common.css","sourcesContent":["@import 'var';\n\na {\n    color: $primary-color;\n}\n"]}

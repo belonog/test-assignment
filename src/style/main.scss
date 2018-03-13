@@ -1,2 +1,6 @@
-@import 'bootstrap-grid.css';
+@import './lib/bootstrap-grid.css';
+
+@import 'common/var';
+@import 'common/common';
+@import 'blocks/filter';
 

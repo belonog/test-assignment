@@ -92,9 +92,8 @@ gulp.task('js:build', function() {
 });
 
 gulp.task('style:build', function() {
-    return gulp.src(path.src.style, {since: gulp.lastRun('style:build')})
+    return gulp.src(path.src.style)
         .pipe(debug({title: 'src'}))
-        .pipe(newer(path.build.style))
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(prefixer())

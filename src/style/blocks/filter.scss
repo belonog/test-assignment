@@ -1,0 +1,71 @@
+.filter {
+    background-color: #f5f5f2;
+    border-radius: 5px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    input {
+        display: none;
+    }
+
+    &__title {
+        margin: 27px 0 10px;
+    }
+
+    & section:first-child &__title {
+        margin-top: 0;
+    }
+
+    &__category,
+    &__budget,
+    &__delivery,
+    &__location {
+
+        &-select {
+            width: 100%;
+        }
+    }
+
+    &__subcat-checkbox,
+    &__rating-radio,
+    &__rating-checkbox {
+        display: block;
+        padding-left: 25px;
+        position: relative;
+
+        &::before {
+            background-color: #fff;
+            border-radius: 3px;
+            border: 1px solid #d2d2cd ;
+            top: 2px;
+            content: "";
+            display: inline-block;
+            height: 16px;
+            left: 0;
+            margin-right: 10px;
+            position: absolute;
+            width: 16px;
+        }
+
+        input[type=checkbox]:checked + &::before {
+            color: $primary-color;
+            content: "\2713";
+            font-size: 15px;
+            line-height: 15px;
+            text-align: center;
+        }
+
+        input[type=radio]:checked + &::before {
+            color: $primary-color;
+            content: "\2022";
+            font-size: 30px;
+            line-height: 16px;
+            text-align: center;
+        }
+    }
+
+    &__rating-radio::before {
+        border-radius: 8px;
+    }
+
+}

@@ -6,6 +6,83 @@
   <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-md-3 hidden-xs filter" data-component="filter">
+        <section class="filter__category" data-element="category">
+          <h4 class="filter__title">Choise Category</h4>
+          <select class="filter__category-select" name="category">
+            <option value="best">Best match</option>
+          </select>
+        </section>
+        <section class="filter__subcategory" data-element="subcategory">
+          <h4 class="filter__title">Choise Subcategory</h4>
+          <input id="filter__subcat-checkbox1" type="checkbox" name="subcategory" value="1">
+          <label for="filter__subcat-checkbox1" class="filter__subcat-checkbox">
+            All Subcategories
+          </label>
+          <input id="filter__subcat-checkbox2" type="checkbox" name="subcategory" value="2">
+          <label for="filter__subcat-checkbox2" class="filter__subcat-checkbox">
+            Data entry (1 306)
+          </label>
+          <input id="filter__subcat-checkbox3" type="checkbox" name="subcategory" value="3">
+          <label for="filter__subcat-checkbox3" class="filter__subcat-checkbox">
+            Personal Assistant (1 907)
+          </label>
+          <input id="filter__subcat-checkbox4" type="checkbox" name="subcategory" value="4">
+          <label for="filter__subcat-checkbox4" class="filter__subcat-checkbox">
+            Web Research (972)
+          </label>
+          <input id="filter__subcat-checkbox5" type="checkbox" name="subcategory" value="5" checked>
+          <label for="filter__subcat-checkbox5" class="filter__subcat-checkbox">
+            Email Response Handling (80)
+          </label>
+          <input id="filter__subcat-checkbox6" type="checkbox" name="subcategory" value="6" checked>
+          <label for="filter__subcat-checkbox6" class="filter__subcat-checkbox">
+            Transcription (307)
+          </label>
+          <input id="filter__subcat-checkbox7" type="checkbox" name="subcategory" value="7" checked>
+          <label for="filter__subcat-checkbox7" class="filter__subcat-checkbox">
+            Other - Administrative support
+          </label>
+        </section>
+        <section class="filter__raiting" data-element="raiting">
+          <h4 class="filter__title">Client Rating</h4>
+          <input type="radio" id="filter__raiting1" name="raiting" checked>
+          <label class="filter__rating-radio" for="filter__raiting1">Any stars</label>
+          <input type="radio" id="filter__raiting2" name="raiting">
+          <label class="filter__rating-radio" for="filter__raiting2">5 stars (930)</label>
+          <input type="radio" id="filter__raiting3" name="raiting">
+          <label class="filter__rating-radio" for="filter__raiting3">4.5 stars and Up (2 591)</label>
+          <input type="radio" id="filter__raiting4" name="raiting">
+          <label class="filter__rating-radio" for="filter__raiting4">4 stars and Up (1 546)</label>
+          <input type="checkbox" id="filter__raiting5" name="raiting" checked>
+          <label class="filter__rating-checkbox" for="filter__raiting5">Include unreated freelancers (1 784)</label>
+        </section>
+        <section class="filter__budget" data-element="budget">
+          <h4 class="filter__title">Budget</h4>
+          <select class="filter__budget-select" name="category">
+            <option value="any">Any budget</option>
+          </select>
+        </section>
+        <section class="filter__delivery" data-element="delivery">
+          <h4 class="filter__title">Delivery</h4>
+          <select class="filter__delivery-select" name="delivery">
+            <option value="any">Any...</option>
+          </select>
+        </section>
+        <section class="filter__location" data-element="location">
+          <h4 class="filter__title">Location</h4>
+          <select class="filter__location-select" name="location">
+            <option value="any">Any Location</option>
+          </select>
+        </section>
+      </div>
+      <div class="col-sm-8 col-md-9">
+
+      </div>
+    </div>
+  </div>
 
 <script src="./js/build.js" defer></script>
 </body>
