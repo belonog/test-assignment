@@ -60,6 +60,10 @@
       color: darken($light-gray, 50%);
       font-size: 1.3em;
       line-height: .8;
+
+      &_marked {
+        color: #ffd900;
+      }
     }
   }
 }

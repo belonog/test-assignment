@@ -34,7 +34,13 @@ export default class JobsCatalogue {
               <span>Country: </span> ${job.client.country}
             </li>
             <li class="job-item__option-item">
-              ${job.client.rating} <span class="job-item__stars">★★★★★★</span>
+              ${job.client.rating}
+              <span class="job-item__stars">
+                <span class="job-item__stars_marked">
+                ${'★'.repeat(Math.floor(job.client.rating))
+                  + '</span>'
+                  + '★'.repeat(5 - Math.floor(job.client.rating))}
+              </span>
             </li>
           </ul>
         </li>
