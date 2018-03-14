@@ -54,13 +54,13 @@ export default class JobsCatalogue {
         if (option !== 'proposals') {
           html += `<span>${optionName}</span> ${options[option]}`;
         } else {
-          html += `<a href="#">${options[option]} ${optionName}</span>`;
+          html += `<a href="#">${options[option]} ${optionName}</a>`;
         }
 
         html += '</li>';
-
-        return html;
       }
+
+      return html;
     }
   }
 }

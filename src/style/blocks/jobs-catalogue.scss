@@ -37,8 +37,9 @@
     }
 
     &__skills {
-      list-style: none;
       display: inline-block;
+      list-style: none;
+      margin-bottom: -.5em;
       padding: 0;
 
       &-item {
@@ -58,6 +59,7 @@
     &__stars {
       color: darken($light-gray, 50%);
       font-size: 1.3em;
+      line-height: .8;
     }
   }
 }
