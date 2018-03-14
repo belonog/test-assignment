@@ -65,14 +65,188 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(1);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "jobsCatalogue", function() { return jobsCatalogue; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_page__ = __webpack_require__(1);
 
+
+__webpack_require__(4);
 $('select').chosen();
+
+let jobsCatalogue = new __WEBPACK_IMPORTED_MODULE_0__jobs_page__["a" /* default */]();
+
 
 /***/ }),
 /* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue__ = __webpack_require__(2);
+
+
+class JobsPage {
+  constructor() {
+    this._jobsCatalogue = new __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue__["a" /* default */](document.querySelector('[data-component="jobs-catalogue"]'));
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = JobsPage;
+
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_service__ = __webpack_require__(3);
+
+
+class JobsCatalogue {
+  constructor(elem) {
+    this._elem = elem;
+    this._render();
+  }
+
+  _render() {
+    const jobs = __WEBPACK_IMPORTED_MODULE_0__jobs_service__["a" /* default */].getJobs().posts;
+    let itemsHTML = '';
+
+    jobs.forEach(job => {
+      itemsHTML += `
+        <li class="job-item">
+          <h4 class="job-item__title"><a href="#">${job.name}</a></h4>
+          <ul class="job-item__options"> ${getOptionsHTML(job.options)}</ul>
+          <p class="job-item__description">${job.description}... <a href="#">more</a></p>
+
+          <ul class="job-item__options">
+            <li class="job-item__option-item">
+              <span>Category: </span> ${job.category}
+            </li>
+            <li class="job-item__option-item">
+              <span>Skills:</span>
+              <ul class="job-item__skills">
+                ${job.skills.map(item => `<li class="job-item__skills-item">${item.name}</li>`).join('')}
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="job-item__options">
+            <li class="job-item__option-item">
+              <span>Country: </span> ${job.client.country}
+            </li>
+            <li class="job-item__option-item">
+              ${job.client.rating} <span class="job-item__stars">★★★★★★</span>
+            </li>
+          </ul>
+        </li>
+      `;
+    });
+
+    this._elem.innerHTML = `<ul class="jobs-catalogue">${itemsHTML}</ul>`;
+
+    function getOptionsHTML(options) {
+      let html = '';
+      let optionsNames = ['fixed', 'budget', 'delivery', 'posted', 'ends', 'proposals'];
+
+      for (const option of optionsNames) {
+        let optionName = option[0].toUpperCase() + option.slice(1);
+
+        html += '<li class="job-item__option-item">';
+        if (option !== 'proposals') {
+          html += `<span>${optionName}</span> ${options[option]}`;
+        } else {
+          html += `<a href="#">${options[option]} ${optionName}</span>`;
+        }
+
+        html += '</li>';
+
+        return html;
+      }
+    }
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = JobsCatalogue;
+
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class JobsService {
+  static getJobs() {
+    return JSON.parse(data);
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = JobsService;
+
+
+const data = `{
+ "posts": [
+   {
+     "name": "SEO Review and Reccomendations",
+     "options": {
+        "fixed": "Regular",
+        "budget": 300,
+        "delivery": "Urgent",
+        "posted": "12 minutes ago",
+        "ends": "14d, 23h",
+        "proposals": 0
+      },
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
+    "category": "Search Engine",
+    "skills": [
+      {
+        "id":1,
+        "name": "net-framework"
+      },
+      {
+        "id":2,
+        "name": "рhp"
+      }
+    ],
+    "client": {
+       "country": "United states",
+       "rating": 4.8
+    }
+   },
+   {
+     "name": "SEO Review and Reccomendations",
+     "options": {
+        "fixed": "Regular",
+        "budget": 300,
+        "delivery": "Urgent",
+        "posted": "12 minutes ago",
+        "ends": "14d, 23h",
+        "proposals": 0
+      },
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
+    "category": "Search Engine",
+    "skills": [
+      {
+        "id":1,
+        "name": "net-framework"
+      },
+      {
+        "id":2,
+        "name": "рhp"
+      }
+    ],
+    "client": {
+       "country": "United states",
+       "rating": 4.8
+    }
+   }
+ ]
+}`;
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 /*!
