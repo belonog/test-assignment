@@ -1,8 +1,9 @@
+@import '../common/var';
+
 .filter {
-    background-color: #f5f5f2;
+    background-color: $light-gray;
     border-radius: 5px;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding: 1em;
 
     input {
         display: none;
@@ -29,7 +30,9 @@
     &__subcat-checkbox,
     &__rating-radio,
     &__rating-checkbox {
+        color: lighten(#000, 30%);
         display: block;
+        font-weight: bold;
         padding-left: 25px;
         position: relative;
 
@@ -44,23 +47,22 @@
             left: 0;
             margin-right: 10px;
             position: absolute;
+            text-align: center;
             width: 16px;
         }
 
         input[type=checkbox]:checked + &::before {
             color: $primary-color;
             content: "\2713";
-            font-size: 15px;
+            font-size: 22px;
             line-height: 15px;
-            text-align: center;
         }
 
         input[type=radio]:checked + &::before {
             color: $primary-color;
             content: "\2022";
             font-size: 30px;
-            line-height: 16px;
-            text-align: center;
+            line-height: 13px;
         }
     }
 

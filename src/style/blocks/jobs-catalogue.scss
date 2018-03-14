@@ -1,0 +1,62 @@
+@import '../common/var';
+
+.jobs-catalogue {
+  list-style: none;
+  padding: 0;
+}
+
+.job {
+  &-item {
+    border: 1px solid darken($light-gray, 7%);
+    border-radius: 5px;
+    padding: 1em;
+
+    &__title {
+      margin: 0;
+    }
+
+    &__options {
+      list-style: none;
+      padding: 0;
+      margin-top: .75em;
+    }
+
+    &__option-item {
+      display: inline-block;
+
+      &:not(:last-child)::after {
+        content: "|";
+        color: darken($light-gray, 30%);
+        margin: 0 .5em;
+      }
+
+      &>span:first-child {
+        color: darken($light-gray, 50%);
+      }
+    }
+
+    &__skills {
+      list-style: none;
+      display: inline-block;
+      padding: 0;
+
+      &-item {
+        display: inline-block;
+        background: $light-gray;
+        border-radius: 5px;
+        padding: .5em 1em;
+        margin: 0 0 0 .5em;
+      }
+    }
+
+    &__raiting {
+      color: #000;
+      font-weight: bold;
+    }
+
+    &__stars {
+      color: darken($light-gray, 50%);
+      font-size: 1.3em;
+    }
+  }
+}
