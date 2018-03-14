@@ -36,7 +36,7 @@ var path = {
       },
       watch: {
         html: 'src/**/*.html',
-        js: 'src/js/*.js',
+        js: 'src/js/**/*.js',
         style: 'src/style/**/*.*',
         img: 'src/img/**/*.{jpg,jpeg,png,gif,svg}',
         lib: 'src/lib/**/*.*'
@@ -79,7 +79,7 @@ gulp.task( 'html:build', function() {
 });
 
 gulp.task('js:build', function() {
-    return gulp.src(path.src.js, {since: gulp.lastRun('js:build')})
+    return gulp.src(path.src.js)
         .pipe(webpack({
             output: {
                 filename: 'build.js',
@@ -93,7 +93,12 @@ gulp.task('js:build', function() {
 
 gulp.task('style:build', function() {
     return gulp.src(path.src.style)
-        .pipe(debug({title: 'src'}))
+        .pipe(debug({ title: 'src' }))
+        .pipe(newer({
+            dest: path.build.style,
+            ext: '.css',
+            extra: path.src.style.replace('/*.', '/**/*.')
+        }))
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(prefixer())
