@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -68,130 +68,18 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "jobsCatalogue", function() { return jobsCatalogue; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_page__ = __webpack_require__(1);
-
-
-__webpack_require__(4);
-$('select').chosen();
-
-let jobsCatalogue = new __WEBPACK_IMPORTED_MODULE_0__jobs_page__["a" /* default */]();
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue__ = __webpack_require__(2);
-
-
-class JobsPage {
-  constructor() {
-    this._jobsCatalogue = new __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue__["a" /* default */](document.querySelector('[data-component="jobs-catalogue"]'));
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = JobsPage;
-
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_service__ = __webpack_require__(3);
-
-
-class JobsCatalogue {
-  constructor(elem) {
-    this._elem = elem;
-    this._render();
-  }
-
-  _render() {
-    const jobs = __WEBPACK_IMPORTED_MODULE_0__jobs_service__["a" /* default */].getJobs().posts;
-    let itemsHTML = '';
-
-    jobs.forEach(job => {
-      itemsHTML += `
-        <li class="job-item">
-          <h4 class="job-item__title"><a href="#">${job.name}</a></h4>
-          <ul class="job-item__options"> ${getOptionsHTML(job.options)}</ul>
-          <p class="job-item__description">${job.description}... <a href="#">more</a></p>
-
-          <ul class="job-item__options">
-            <li class="job-item__option-item">
-              <span>Category: </span> ${job.category}
-            </li>
-            <li class="job-item__option-item">
-              <span>Skills:</span>
-              <ul class="job-item__skills">
-                ${job.skills.map(item => `<li class="job-item__skills-item">${item.name}</li>`).join('')}
-              </ul>
-            </li>
-          </ul>
-
-          <ul class="job-item__options">
-            <li class="job-item__option-item">
-              <span>Country: </span> ${job.client.country}
-            </li>
-            <li class="job-item__option-item">
-              ${job.client.rating}
-              <span class="job-item__stars">
-                <span class="job-item__stars_marked">
-                ${'★'.repeat(Math.floor(job.client.rating))
-                  + '</span>'
-                  + '★'.repeat(5 - Math.floor(job.client.rating))}
-              </span>
-            </li>
-          </ul>
-        </li>
-      `;
-    });
-
-    this._elem.innerHTML = `<ul class="jobs-catalogue">${itemsHTML}</ul>`;
-
-    function getOptionsHTML(options) {
-      let html = '';
-      let optionsNames = ['fixed', 'budget', 'delivery', 'posted', 'ends', 'proposals'];
-
-      for (const option of optionsNames) {
-        let optionName = option[0].toUpperCase() + option.slice(1);
-
-        html += '<li class="job-item__option-item">';
-        if (option !== 'proposals') {
-          html += `<span>${optionName}</span> ${options[option]}`;
-        } else {
-          html += `<a href="#">${options[option]} ${optionName}</a>`;
-        }
-
-        html += '</li>';
-      }
-
-      return html;
-    }
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = JobsCatalogue;
-
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 class JobsService {
   static getJobs() {
-    return JSON.parse(data);
+    return JSON.parse(jobsData);
+  }
+  static getFilters() {
+    return JSON.parse(filterData);
   }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = JobsService;
 
 
-const data = `{
+const jobsData = `{
  "posts": [
    {
      "name": "SEO Review and Reccomendations",
@@ -357,10 +245,359 @@ const data = `{
    }
  ]
 }`;
+const filterData = `
+  {
+    "category": [
+      {
+        "id": 0,
+        "name": "Best match"
+      }
+    ],
+    "subcategory": [
+      {
+        "id": 0,
+        "name": "All Subcategories"
+      },
+      {
+        "id": 1,
+        "name": "Data entry (1 306)"
+      },
+      {
+        "id": 2,
+        "name": "Personal Assistant (1 907)"
+      },
+      {
+        "id": 3,
+        "name": "Web Research (972)"
+      },
+      {
+        "id": 4,
+        "name": "Email Response Handling (80)",
+        "checked": true
+      },
+      {
+        "id": 5,
+        "name": "Transcription (307)",
+        "checked": true
+      },
+      {
+        "id": 6,
+        "name": "Other - Administrative support",
+        "checked": true
+      }
+    ],
+    "raiting": [
+      {
+        "id": 0,
+        "name": "Any stars"
+      },
+      {
+        "id": 1,
+        "name": "5 stars (930)"
+      },
+      {
+        "id": 2,
+        "name": "4.5 stars and Up (2 591)"
+      },
+      {
+        "id": 3,
+        "name": "4 stars and Up (1 546)"
+      },
+      {
+        "id": 4,
+        "checkbox": true,
+        "name": "Include unreated freelancers (1 784)"
+      }
+    ],
+    "budget": [
+      {
+        "id": 0,
+        "name": "Any budget"
+      }
+    ],
+    "delivery": [
+      {
+        "id": 0,
+        "name": "Any..."
+      }
+    ],
+    "location": [
+      {
+        "id": 0,
+        "name": "Any location"
+      }
+    ]
+  }
+`;
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "jobsPage", function() { return jobsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_page__ = __webpack_require__(2);
+
+
+let jobsPage = new __WEBPACK_IMPORTED_MODULE_0__jobs_page__["a" /* default */]();
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__jobs_filter__ = __webpack_require__(4);
+
+
+
+
+class JobsPage {
+  constructor() {
+    this._jobsCatalogue = new __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue__["a" /* default */]({
+      element: document.querySelector('[data-component="jobs-catalogue"]')
+    });
+
+    this._jobsFilter = new __WEBPACK_IMPORTED_MODULE_1__jobs_filter__["a" /* default */]({
+      element: document.querySelector('[data-component="jobs-filter"]')
+    });
+    // send request to server
+    this._jobsFilter.on('filterSelected', event => console.log(Array.from(event.detail.entries())));
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = JobsPage;
+
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_service__ = __webpack_require__(0);
+
+
+class JobsCatalogue {
+  constructor({element}) {
+    this._element = element;
+    this._render();
+  }
+
+  _render() {
+    const jobs = __WEBPACK_IMPORTED_MODULE_0__jobs_service__["a" /* default */].getJobs().posts;
+    let itemsHTML = '';
+
+    jobs.forEach(job => {
+      itemsHTML += `
+        <li class="job-item">
+          <h4 class="job-item__title"><a href="#">${job.name}</a></h4>
+          <ul class="job-item__options"> ${getOptionsHTML(job.options)}</ul>
+          <p class="job-item__description">${job.description}... <a href="#">more</a></p>
+
+          <ul class="job-item__options">
+            <li class="job-item__option-item">
+              <span>Category: </span> ${job.category}
+            </li>
+            <li class="job-item__option-item">
+              <span>Skills:</span>
+              <ul class="job-item__skills">
+                ${job.skills.map(item => `<li class="job-item__skills-item">${item.name}</li>`).join('')}
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="job-item__options">
+            <li class="job-item__option-item">
+              <span>Country: </span> ${job.client.country}
+            </li>
+            <li class="job-item__option-item">
+              ${job.client.rating}
+              <span class="job-item__stars">
+                <span class="job-item__stars_marked">
+                ${'★'.repeat(Math.floor(job.client.rating))
+                  + '</span>'
+                  + '★'.repeat(5 - Math.floor(job.client.rating))}
+              </span>
+            </li>
+          </ul>
+        </li>
+      `;
+    });
+
+    this._elem.innerHTML = `<ul class="jobs-catalogue">${itemsHTML}</ul>`;
+
+    function getOptionsHTML(options) {
+      let html = '';
+      let optionsNames = ['fixed', 'budget', 'delivery', 'posted', 'ends', 'proposals'];
+
+      for (const option of optionsNames) {
+        let optionName = option[0].toUpperCase() + option.slice(1);
+
+        html += '<li class="job-item__option-item">';
+        if (option !== 'proposals') {
+          html += `<span>${optionName} :</span> ${options[option]}`;
+        } else {
+          html += `<a href="#">${options[option]} ${optionName}</a>`;
+        }
+
+        html += '</li>';
+      }
+
+      return html;
+    }
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = JobsCatalogue;
+
 
 
 /***/ }),
 /* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue_jobs_service_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component_js__ = __webpack_require__(5);
+
+
+
+class JobsFilter extends __WEBPACK_IMPORTED_MODULE_1__component_js__["a" /* default */] {
+  constructor({element}) {
+    super(element);
+
+    this._render();
+
+    __webpack_require__(6);
+    $('select').chosen();
+
+    element.addEventListener('change', e => {
+      let formData = new FormData(e.target.form);
+
+      this._trigger('filterSelected', formData);
+    });
+  }
+
+  _render() {
+    let filters = __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue_jobs_service_js__["a" /* default */].getFilters();
+
+    this._element.innerHTML = `
+      <form name="filter" action="/">
+        <section class="filter__category" data-element="category">
+          <h4 class="filter__title">Choise Category</h4>
+          <select class="filter__category-select" name="category">
+            ${ filters.category.map(item => `
+                <option value="${item.id}">${item.name}</option>
+              `).join('')}
+          </select>
+        </section>
+        <section class="filter__subcategory" data-element="subcategory">
+          <h4 class="filter__title">Choise Subcategory</h4>
+          ${filters.subcategory.map(item => `
+            <input id="filter__subcat-checkbox${item.id}"
+                   type="checkbox"
+                   name="subcategory"
+                   value="${item.id}" ${item.checked ? 'checked' : ''}>
+            <label for="filter__subcat-checkbox${item.id}"
+                   class="filter__subcat-checkbox">
+              ${item.name}
+            </label>
+          `).join('')}
+        </section>
+        <section class="filter__raiting" data-element="raiting">
+          <h4 class="filter__title">Client Rating</h4>
+          ${filters.raiting.map(item => `
+            <input type="${item.checkbox ? 'checkbox' : 'radio'}"
+                   id="filter__raiting${item.id}"
+                   name="raiting"
+                   ${item.id === 0 ? 'checked' : ''}
+                   value="${item.id}">
+            <label class="filter__rating-${item.checkbox ? 'checkbox' : 'radio'}"
+                   for="filter__raiting${item.id}">
+              ${item.name}
+            </label>
+          `).join('')}
+        </section>
+        <section class="filter__budget" data-element="budget">
+          <h4 class="filter__title">Budget</h4>
+          <select class="filter__budget-select" name="category">
+            ${ filters.budget.map(item => `
+                <option value="${item.id}">${item.name}</option>
+              `).join('')}
+          </select>
+        </section>
+        <section class="filter__delivery" data-element="delivery">
+          <h4 class="filter__title">Delivery</h4>
+          <select class="filter__delivery-select" name="delivery">
+            ${ filters.delivery.map(item => `
+                <option value="${item.id}">${item.name}</option>
+              `).join('')}
+          </select>
+        </section>
+        <section class="filter__location" data-element="location">
+          <h4 class="filter__title">Location</h4>
+          <select class="filter__location-select" name="location">
+            ${ filters.location.map(item => `
+                <option value="${item.id}">${item.name}</option>
+              `).join('')}
+          </select>
+        </section>
+      </form>
+    `;
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = JobsFilter;
+
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Component {
+  constructor(element) {
+    this._element = element;
+  }
+
+  on(eventName, callback, selector = '') {
+    this._element.addEventListener(eventName, (event) => {
+      if (selector && !event.target.closest(selector)) {
+        return;
+      }
+
+      callback(event);
+    });
+  }
+
+  off(eventName, callback) {
+    this._element.removeEventListener(eventName, callback);
+  }
+
+  _trigger(eventName, data) {
+    let customEvent = new CustomEvent(eventName, {
+      detail: data,
+    });
+
+    this._element.dispatchEvent(customEvent);
+  }
+
+  hide() {
+    this._element.classList.add('hidden');
+  }
+
+  show() {
+    this._element.classList.remove('hidden');
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Component;
+
+
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports) {
 
 /*!

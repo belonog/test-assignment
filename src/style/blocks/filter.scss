@@ -58,11 +58,16 @@
             line-height: 15px;
         }
 
-        input[type=radio]:checked + &::before {
-            color: $primary-color;
-            content: "\2022";
-            font-size: 30px;
-            line-height: 13px;
+        input[type=radio]:checked + &::after {
+            background-color: $primary-color;
+            content: "";
+            display: block;
+            position: absolute;
+            height: 8px;
+            width: 8px;
+            border-radius: 10px;
+            left: 4px;
+            top: 6px;
         }
     }
 

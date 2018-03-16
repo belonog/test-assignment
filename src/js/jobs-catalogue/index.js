@@ -1,8 +1,8 @@
 import JobsService from './jobs-service';
 
 export default class JobsCatalogue {
-  constructor(elem) {
-    this._elem = elem;
+  constructor({element}) {
+    this._element = element;
     this._render();
   }
 
@@ -58,7 +58,7 @@ export default class JobsCatalogue {
 
         html += '<li class="job-item__option-item">';
         if (option !== 'proposals') {
-          html += `<span>${optionName}</span> ${options[option]}`;
+          html += `<span>${optionName} :</span> ${options[option]}`;
         } else {
           html += `<a href="#">${options[option]} ${optionName}</a>`;
         }

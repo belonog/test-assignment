@@ -1,10 +1,13 @@
 export default class JobsService {
   static getJobs() {
-    return JSON.parse(data);
+    return JSON.parse(jobsData);
+  }
+  static getFilters() {
+    return JSON.parse(filterData);
   }
 }
 
-const data = `{
+const jobsData = `{
  "posts": [
    {
      "name": "SEO Review and Reccomendations",
@@ -170,3 +173,87 @@ const data = `{
    }
  ]
 }`;
+const filterData = `
+  {
+    "category": [
+      {
+        "id": 0,
+        "name": "Best match"
+      }
+    ],
+    "subcategory": [
+      {
+        "id": 0,
+        "name": "All Subcategories"
+      },
+      {
+        "id": 1,
+        "name": "Data entry (1 306)"
+      },
+      {
+        "id": 2,
+        "name": "Personal Assistant (1 907)"
+      },
+      {
+        "id": 3,
+        "name": "Web Research (972)"
+      },
+      {
+        "id": 4,
+        "name": "Email Response Handling (80)",
+        "checked": true
+      },
+      {
+        "id": 5,
+        "name": "Transcription (307)",
+        "checked": true
+      },
+      {
+        "id": 6,
+        "name": "Other - Administrative support",
+        "checked": true
+      }
+    ],
+    "raiting": [
+      {
+        "id": 0,
+        "name": "Any stars"
+      },
+      {
+        "id": 1,
+        "name": "5 stars (930)"
+      },
+      {
+        "id": 2,
+        "name": "4.5 stars and Up (2 591)"
+      },
+      {
+        "id": 3,
+        "name": "4 stars and Up (1 546)"
+      },
+      {
+        "id": 4,
+        "checkbox": true,
+        "name": "Include unreated freelancers (1 784)"
+      }
+    ],
+    "budget": [
+      {
+        "id": 0,
+        "name": "Any budget"
+      }
+    ],
+    "delivery": [
+      {
+        "id": 0,
+        "name": "Any..."
+      }
+    ],
+    "location": [
+      {
+        "id": 0,
+        "name": "Any location"
+      }
+    ]
+  }
+`;
