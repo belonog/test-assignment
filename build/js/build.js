@@ -503,7 +503,6 @@ class JobsFilter extends __WEBPACK_IMPORTED_MODULE_1__component_js__["a" /* defa
     super(element);
 
     __webpack_require__(6);
-    $('select').chosen();
 
     element.addEventListener('change', e => {
       let formData = new FormData(e.target.form);
@@ -515,6 +514,9 @@ class JobsFilter extends __WEBPACK_IMPORTED_MODULE_1__component_js__["a" /* defa
   showFilter(filtres) {
     this._filters = filtres;
     this._render();
+
+    $(this._element.querySelectorAll('select')).chosen();
+
   }
 
   _render() {

@@ -6,7 +6,6 @@ export default class JobsFilter extends Component {
     super(element);
 
     require('./lib/chosen.jquery.js');
-    $('select').chosen();
 
     element.addEventListener('change', e => {
       let formData = new FormData(e.target.form);
@@ -18,6 +17,9 @@ export default class JobsFilter extends Component {
   showFilter(filtres) {
     this._filters = filtres;
     this._render();
+
+    $(this._element.querySelectorAll('select')).chosen();
+
   }
 
   _render() {
