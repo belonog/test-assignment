@@ -70,10 +70,19 @@
 "use strict";
 class JobsService {
   static getJobs() {
-    return JSON.parse(jobsData);
+    return Promise.resolve(jobsData)
+      .then(JSON.parse)
+      .catch(console.error);
   }
   static getFilters() {
-    return JSON.parse(filterData);
+    return Promise.resolve(filterData)
+      .then(data => new Promise((res, rej) => {
+        // emulate server timeout
+        setTimeout(() => {
+          res(JSON.parse(data))
+        }, 500);
+      }))
+      .catch(console.error);
   }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = JobsService;
@@ -341,7 +350,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_page__ = __webpack_require__(2);
 
 
-let jobsPage = new __WEBPACK_IMPORTED_MODULE_0__jobs_page__["a" /* default */]();
+let jobsPage = new __WEBPACK_IMPORTED_MODULE_0__jobs_page__["a" /* default */]({
+  element: document.querySelector('[data-page-container]')
+});
 
 
 /***/ }),
@@ -351,19 +362,38 @@ let jobsPage = new __WEBPACK_IMPORTED_MODULE_0__jobs_page__["a" /* default */]()
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__jobs_filter__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__jobs_catalogue_jobs_service__ = __webpack_require__(0);
+
 
 
 
 
 class JobsPage {
-  constructor() {
+  constructor({element}) {
+    this._element = element;
+
+    this._initCatalogue();
+    this._initFilter();
+  }
+
+  _initCatalogue() {
     this._jobsCatalogue = new __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue__["a" /* default */]({
       element: document.querySelector('[data-component="jobs-catalogue"]')
     });
 
+    let jobsPromise = __WEBPACK_IMPORTED_MODULE_2__jobs_catalogue_jobs_service__["a" /* default */].getJobs();
+
+    jobsPromise.then(jobsData => this._jobsCatalogue.showJobs(jobsData.posts))
+  }
+
+  _initFilter() {
     this._jobsFilter = new __WEBPACK_IMPORTED_MODULE_1__jobs_filter__["a" /* default */]({
       element: document.querySelector('[data-component="jobs-filter"]')
     });
+
+    __WEBPACK_IMPORTED_MODULE_2__jobs_catalogue_jobs_service__["a" /* default */].getFilters()
+      .then(filterData => this._jobsFilter.showFilter(filterData));
+
     // send request to server
     this._jobsFilter.on('filterSelected', event => console.log(Array.from(event.detail.entries())));
   }
@@ -383,11 +413,15 @@ class JobsPage {
 class JobsCatalogue {
   constructor({element}) {
     this._element = element;
+  }
+
+  showJobs(jobs) {
+    this._jobsData = jobs;
     this._render();
   }
 
   _render() {
-    const jobs = __WEBPACK_IMPORTED_MODULE_0__jobs_service__["a" /* default */].getJobs().posts;
+    const jobs = this._jobsData;
     let itemsHTML = '';
 
     jobs.forEach(job => {
@@ -468,8 +502,6 @@ class JobsFilter extends __WEBPACK_IMPORTED_MODULE_1__component_js__["a" /* defa
   constructor({element}) {
     super(element);
 
-    this._render();
-
     __webpack_require__(6);
     $('select').chosen();
 
@@ -480,8 +512,13 @@ class JobsFilter extends __WEBPACK_IMPORTED_MODULE_1__component_js__["a" /* defa
     });
   }
 
+  showFilter(filtres) {
+    this._filters = filtres;
+    this._render();
+  }
+
   _render() {
-    let filters = __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue_jobs_service_js__["a" /* default */].getFilters();
+    let filters = this._filters;
 
     this._element.innerHTML = `
       <form name="filter" action="/">

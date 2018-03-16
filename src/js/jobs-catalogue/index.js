@@ -3,11 +3,15 @@ import JobsService from './jobs-service';
 export default class JobsCatalogue {
   constructor({element}) {
     this._element = element;
+  }
+
+  showJobs(jobs) {
+    this._jobsData = jobs;
     this._render();
   }
 
   _render() {
-    const jobs = JobsService.getJobs().posts;
+    const jobs = this._jobsData;
     let itemsHTML = '';
 
     jobs.forEach(job => {

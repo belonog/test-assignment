@@ -1,9 +1,18 @@
 export default class JobsService {
   static getJobs() {
-    return JSON.parse(jobsData);
+    return Promise.resolve(jobsData)
+      .then(JSON.parse)
+      .catch(console.error);
   }
   static getFilters() {
-    return JSON.parse(filterData);
+    return Promise.resolve(filterData)
+      .then(data => new Promise((res, rej) => {
+        // emulate server timeout
+        setTimeout(() => {
+          res(JSON.parse(data))
+        }, 500);
+      }))
+      .catch(console.error);
   }
 }
 

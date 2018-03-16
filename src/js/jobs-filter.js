@@ -5,8 +5,6 @@ export default class JobsFilter extends Component {
   constructor({element}) {
     super(element);
 
-    this._render();
-
     require('./lib/chosen.jquery.js');
     $('select').chosen();
 
@@ -17,8 +15,13 @@ export default class JobsFilter extends Component {
     });
   }
 
+  showFilter(filtres) {
+    this._filters = filtres;
+    this._render();
+  }
+
   _render() {
-    let filters = JobsService.getFilters();
+    let filters = this._filters;
 
     this._element.innerHTML = `
       <form name="filter" action="/">
