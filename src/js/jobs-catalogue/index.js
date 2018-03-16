@@ -47,7 +47,7 @@ export default class JobsCatalogue {
       `;
     });
 
-    this._elem.innerHTML = `<ul class="jobs-catalogue">${itemsHTML}</ul>`;
+    this._element.innerHTML = `<ul class="jobs-catalogue">${itemsHTML}</ul>`;
 
     function getOptionsHTML(options) {
       let html = '';
