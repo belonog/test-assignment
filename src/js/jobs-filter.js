@@ -1,4 +1,3 @@
-import JobsService from './jobs-catalogue/jobs-service.js';
 import Component from './component.js';
 
 export default class JobsFilter extends Component {

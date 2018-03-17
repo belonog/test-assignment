@@ -1,5 +1,3 @@
-import JobsService from './jobs-service';
-
 export default class JobsCatalogue {
   constructor({element}) {
     this._element = element;

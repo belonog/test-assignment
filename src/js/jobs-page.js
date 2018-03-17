@@ -16,9 +16,7 @@ export default class JobsPage {
       element: document.querySelector('[data-component="jobs-catalogue"]')
     });
 
-    let jobsPromise = JobsService.getJobs();
-
-    jobsPromise.then(jobsData => this._jobsCatalogue.showJobs(jobsData.posts))
+    this._showJobs();
   }
 
   _initFilter() {
@@ -30,6 +28,18 @@ export default class JobsPage {
       .then(filterData => this._jobsFilter.showFilter(filterData));
 
     // send request to server
-    this._jobsFilter.on('filterSelected', event => console.log(Array.from(event.detail.entries())));
+    this._jobsFilter.on(
+      'filterSelected',
+      event => {
+        let filterFormData = event.detail;
+
+        this._showJobs(filterFormData);
+      }
+    );
+  }
+
+  _showJobs(filterFormData) {
+    JobsService.getJobs(filterFormData)
+      .then(jobsData => this._jobsCatalogue.showJobs(jobsData.posts));
   }
 }

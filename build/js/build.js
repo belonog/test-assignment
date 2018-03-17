@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -68,286 +68,9 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class JobsService {
-  static getJobs() {
-    return Promise.resolve(jobsData)
-      .then(JSON.parse)
-      .catch(console.error);
-  }
-  static getFilters() {
-    return Promise.resolve(filterData)
-      .then(data => new Promise((res, rej) => {
-        // emulate server timeout
-        setTimeout(() => {
-          res(JSON.parse(data))
-        }, 500);
-      }))
-      .catch(console.error);
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = JobsService;
-
-
-const jobsData = `{
- "posts": [
-   {
-     "name": "SEO Review and Reccomendations",
-     "options": {
-        "fixed": "Regular",
-        "budget": 300,
-        "delivery": "Urgent",
-        "posted": "12 minutes ago",
-        "ends": "14d, 23h",
-        "proposals": 0
-      },
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
-    "category": "Search Engine",
-    "skills": [
-      {
-        "id":1,
-        "name": "net-framework"
-      },
-      {
-        "id":2,
-        "name": "рhp"
-      }
-    ],
-    "client": {
-       "country": "United states",
-       "rating": 4.8
-    }
-   },
-   {
-     "name": "SEO Review and Reccomendations",
-     "options": {
-        "fixed": "Regular",
-        "budget": 300,
-        "delivery": "Urgent",
-        "posted": "12 minutes ago",
-        "ends": "14d, 23h",
-        "proposals": 0
-      },
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
-    "category": "Search Engine",
-    "skills": [
-      {
-        "id":1,
-        "name": "net-framework"
-      },
-      {
-        "id":2,
-        "name": "рhp"
-      }
-    ],
-    "client": {
-       "country": "United states",
-       "rating": 4.8
-    }
-   },
-   {
-     "name": "SEO Review and Reccomendations",
-     "options": {
-        "fixed": "Regular",
-        "budget": 300,
-        "delivery": "Urgent",
-        "posted": "12 minutes ago",
-        "ends": "14d, 23h",
-        "proposals": 0
-      },
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
-    "category": "Search Engine",
-    "skills": [
-      {
-        "id":1,
-        "name": "net-framework"
-      },
-      {
-        "id":2,
-        "name": "рhp"
-      }
-    ],
-    "client": {
-       "country": "United states",
-       "rating": 4.8
-    }
-   },
-   {
-     "name": "SEO Review and Reccomendations",
-     "options": {
-        "fixed": "Regular",
-        "budget": 300,
-        "delivery": "Urgent",
-        "posted": "12 minutes ago",
-        "ends": "14d, 23h",
-        "proposals": 0
-      },
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
-    "category": "Search Engine",
-    "skills": [
-      {
-        "id":1,
-        "name": "net-framework"
-      },
-      {
-        "id":2,
-        "name": "рhp"
-      }
-    ],
-    "client": {
-       "country": "United states",
-       "rating": 4.8
-    }
-   },
-   {
-     "name": "SEO Review and Reccomendations",
-     "options": {
-        "fixed": "Regular",
-        "budget": 300,
-        "delivery": "Urgent",
-        "posted": "12 minutes ago",
-        "ends": "14d, 23h",
-        "proposals": 0
-      },
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
-    "category": "Search Engine",
-    "skills": [
-      {
-        "id":1,
-        "name": "net-framework"
-      },
-      {
-        "id":2,
-        "name": "рhp"
-      }
-    ],
-    "client": {
-       "country": "United states",
-       "rating": 4.8
-    }
-   },
-   {
-     "name": "SEO Review and Reccomendations",
-     "options": {
-        "fixed": "Regular",
-        "budget": 300,
-        "delivery": "Urgent",
-        "posted": "12 minutes ago",
-        "ends": "14d, 23h",
-        "proposals": 0
-      },
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
-    "category": "Search Engine",
-    "skills": [
-      {
-        "id":1,
-        "name": "net-framework"
-      },
-      {
-        "id":2,
-        "name": "рhp"
-      }
-    ],
-    "client": {
-       "country": "United states",
-       "rating": 4.8
-    }
-   }
- ]
-}`;
-const filterData = `
-  {
-    "category": [
-      {
-        "id": 0,
-        "name": "Best match"
-      }
-    ],
-    "subcategory": [
-      {
-        "id": 0,
-        "name": "All Subcategories"
-      },
-      {
-        "id": 1,
-        "name": "Data entry (1 306)"
-      },
-      {
-        "id": 2,
-        "name": "Personal Assistant (1 907)"
-      },
-      {
-        "id": 3,
-        "name": "Web Research (972)"
-      },
-      {
-        "id": 4,
-        "name": "Email Response Handling (80)",
-        "checked": true
-      },
-      {
-        "id": 5,
-        "name": "Transcription (307)",
-        "checked": true
-      },
-      {
-        "id": 6,
-        "name": "Other - Administrative support",
-        "checked": true
-      }
-    ],
-    "raiting": [
-      {
-        "id": 0,
-        "name": "Any stars"
-      },
-      {
-        "id": 1,
-        "name": "5 stars (930)"
-      },
-      {
-        "id": 2,
-        "name": "4.5 stars and Up (2 591)"
-      },
-      {
-        "id": 3,
-        "name": "4 stars and Up (1 546)"
-      },
-      {
-        "id": 4,
-        "checkbox": true,
-        "name": "Include unreated freelancers (1 784)"
-      }
-    ],
-    "budget": [
-      {
-        "id": 0,
-        "name": "Any budget"
-      }
-    ],
-    "delivery": [
-      {
-        "id": 0,
-        "name": "Any..."
-      }
-    ],
-    "location": [
-      {
-        "id": 0,
-        "name": "Any location"
-      }
-    ]
-  }
-`;
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "jobsPage", function() { return jobsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_page__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_page__ = __webpack_require__(1);
 
 
 let jobsPage = new __WEBPACK_IMPORTED_MODULE_0__jobs_page__["a" /* default */]({
@@ -356,13 +79,13 @@ let jobsPage = new __WEBPACK_IMPORTED_MODULE_0__jobs_page__["a" /* default */]({
 
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__jobs_filter__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__jobs_catalogue_jobs_service__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__jobs_filter__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__jobs_catalogue_jobs_service__ = __webpack_require__(6);
 
 
 
@@ -381,9 +104,7 @@ class JobsPage {
       element: document.querySelector('[data-component="jobs-catalogue"]')
     });
 
-    let jobsPromise = __WEBPACK_IMPORTED_MODULE_2__jobs_catalogue_jobs_service__["a" /* default */].getJobs();
-
-    jobsPromise.then(jobsData => this._jobsCatalogue.showJobs(jobsData.posts))
+    this._showJobs();
   }
 
   _initFilter() {
@@ -395,7 +116,19 @@ class JobsPage {
       .then(filterData => this._jobsFilter.showFilter(filterData));
 
     // send request to server
-    this._jobsFilter.on('filterSelected', event => console.log(Array.from(event.detail.entries())));
+    this._jobsFilter.on(
+      'filterSelected',
+      event => {
+        let filterFormData = event.detail;
+
+        this._showJobs(filterFormData);
+      }
+    );
+  }
+
+  _showJobs(filterFormData) {
+    __WEBPACK_IMPORTED_MODULE_2__jobs_catalogue_jobs_service__["a" /* default */].getJobs(filterFormData)
+      .then(jobsData => this._jobsCatalogue.showJobs(jobsData.posts));
   }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = JobsPage;
@@ -403,13 +136,10 @@ class JobsPage {
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_service__ = __webpack_require__(0);
-
-
 class JobsCatalogue {
   constructor({element}) {
     this._element = element;
@@ -489,20 +219,18 @@ class JobsCatalogue {
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue_jobs_service_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component_js__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__component_js__ = __webpack_require__(4);
 
 
-
-class JobsFilter extends __WEBPACK_IMPORTED_MODULE_1__component_js__["a" /* default */] {
+class JobsFilter extends __WEBPACK_IMPORTED_MODULE_0__component_js__["a" /* default */] {
   constructor({element}) {
     super(element);
 
-    __webpack_require__(6);
+    __webpack_require__(5);
 
     element.addEventListener('change', e => {
       let formData = new FormData(e.target.form);
@@ -592,7 +320,7 @@ class JobsFilter extends __WEBPACK_IMPORTED_MODULE_1__component_js__["a" /* defa
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -636,7 +364,7 @@ class Component {
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 /*!
@@ -1995,6 +1723,283 @@ This file is generated by `grunt build`, do not edit it by hand.
   })(AbstractChosen);
 
 }).call(this);
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class JobsService {
+  static getJobs() {
+    return Promise.resolve(jobsData)
+      .then(JSON.parse)
+      .catch(console.error);
+  }
+  static getFilters() {
+    return Promise.resolve(filterData)
+      .then(data => new Promise((res, rej) => {
+        // emulate server timeout
+        setTimeout(() => {
+          res(JSON.parse(data))
+        }, 500);
+      }))
+      .catch(console.error);
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = JobsService;
+
+
+const jobsData = `{
+ "posts": [
+   {
+     "name": "SEO Review and Reccomendations",
+     "options": {
+        "fixed": "Regular",
+        "budget": 300,
+        "delivery": "Urgent",
+        "posted": "12 minutes ago",
+        "ends": "14d, 23h",
+        "proposals": 0
+      },
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
+    "category": "Search Engine",
+    "skills": [
+      {
+        "id":1,
+        "name": "net-framework"
+      },
+      {
+        "id":2,
+        "name": "рhp"
+      }
+    ],
+    "client": {
+       "country": "United states",
+       "rating": 4.8
+    }
+   },
+   {
+     "name": "SEO Review and Reccomendations",
+     "options": {
+        "fixed": "Regular",
+        "budget": 300,
+        "delivery": "Urgent",
+        "posted": "12 minutes ago",
+        "ends": "14d, 23h",
+        "proposals": 0
+      },
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
+    "category": "Search Engine",
+    "skills": [
+      {
+        "id":1,
+        "name": "net-framework"
+      },
+      {
+        "id":2,
+        "name": "рhp"
+      }
+    ],
+    "client": {
+       "country": "United states",
+       "rating": 4.8
+    }
+   },
+   {
+     "name": "SEO Review and Reccomendations",
+     "options": {
+        "fixed": "Regular",
+        "budget": 300,
+        "delivery": "Urgent",
+        "posted": "12 minutes ago",
+        "ends": "14d, 23h",
+        "proposals": 0
+      },
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
+    "category": "Search Engine",
+    "skills": [
+      {
+        "id":1,
+        "name": "net-framework"
+      },
+      {
+        "id":2,
+        "name": "рhp"
+      }
+    ],
+    "client": {
+       "country": "United states",
+       "rating": 4.8
+    }
+   },
+   {
+     "name": "SEO Review and Reccomendations",
+     "options": {
+        "fixed": "Regular",
+        "budget": 300,
+        "delivery": "Urgent",
+        "posted": "12 minutes ago",
+        "ends": "14d, 23h",
+        "proposals": 0
+      },
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
+    "category": "Search Engine",
+    "skills": [
+      {
+        "id":1,
+        "name": "net-framework"
+      },
+      {
+        "id":2,
+        "name": "рhp"
+      }
+    ],
+    "client": {
+       "country": "United states",
+       "rating": 4.8
+    }
+   },
+   {
+     "name": "SEO Review and Reccomendations",
+     "options": {
+        "fixed": "Regular",
+        "budget": 300,
+        "delivery": "Urgent",
+        "posted": "12 minutes ago",
+        "ends": "14d, 23h",
+        "proposals": 0
+      },
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
+    "category": "Search Engine",
+    "skills": [
+      {
+        "id":1,
+        "name": "net-framework"
+      },
+      {
+        "id":2,
+        "name": "рhp"
+      }
+    ],
+    "client": {
+       "country": "United states",
+       "rating": 4.8
+    }
+   },
+   {
+     "name": "SEO Review and Reccomendations",
+     "options": {
+        "fixed": "Regular",
+        "budget": 300,
+        "delivery": "Urgent",
+        "posted": "12 minutes ago",
+        "ends": "14d, 23h",
+        "proposals": 0
+      },
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur... more Excepteur sint occaecat cupidatat no",
+    "category": "Search Engine",
+    "skills": [
+      {
+        "id":1,
+        "name": "net-framework"
+      },
+      {
+        "id":2,
+        "name": "рhp"
+      }
+    ],
+    "client": {
+       "country": "United states",
+       "rating": 4.8
+    }
+   }
+ ]
+}`;
+const filterData = `
+  {
+    "category": [
+      {
+        "id": 0,
+        "name": "Best match"
+      }
+    ],
+    "subcategory": [
+      {
+        "id": 0,
+        "name": "All Subcategories"
+      },
+      {
+        "id": 1,
+        "name": "Data entry (1 306)"
+      },
+      {
+        "id": 2,
+        "name": "Personal Assistant (1 907)"
+      },
+      {
+        "id": 3,
+        "name": "Web Research (972)"
+      },
+      {
+        "id": 4,
+        "name": "Email Response Handling (80)",
+        "checked": true
+      },
+      {
+        "id": 5,
+        "name": "Transcription (307)",
+        "checked": true
+      },
+      {
+        "id": 6,
+        "name": "Other - Administrative support",
+        "checked": true
+      }
+    ],
+    "raiting": [
+      {
+        "id": 0,
+        "name": "Any stars"
+      },
+      {
+        "id": 1,
+        "name": "5 stars (930)"
+      },
+      {
+        "id": 2,
+        "name": "4.5 stars and Up (2 591)"
+      },
+      {
+        "id": 3,
+        "name": "4 stars and Up (1 546)"
+      },
+      {
+        "id": 4,
+        "checkbox": true,
+        "name": "Include unreated freelancers (1 784)"
+      }
+    ],
+    "budget": [
+      {
+        "id": 0,
+        "name": "Any budget"
+      }
+    ],
+    "delivery": [
+      {
+        "id": 0,
+        "name": "Any..."
+      }
+    ],
+    "location": [
+      {
+        "id": 0,
+        "name": "Any location"
+      }
+    ]
+  }
+`;
 
 
 /***/ })
