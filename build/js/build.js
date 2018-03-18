@@ -2070,7 +2070,7 @@ class PinterestRequest {
 "use strict";
 class PinterestService {
   static getFeedData(username) {
-    return fetch(`https://cors.io/?https://www.pinterest.com/${encodeURIComponent(username)}/feed.rss/`)
+    return fetch(`https://crossorigin.me/https://www.pinterest.com/${encodeURIComponent(username)}/feed.rss/`)
       .then(PinterestService._checkStatus)
       .then(response => response.text())
       .then(xmlStr => (new DOMParser()).parseFromString(xmlStr, 'text/xml'))
