@@ -86,6 +86,8 @@ let jobsPage = new __WEBPACK_IMPORTED_MODULE_0__jobs_page__["a" /* default */]({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jobs_catalogue__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__jobs_filter__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__jobs_catalogue_jobs_service__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pinterest_request__ = __webpack_require__(7);
+
 
 
 
@@ -97,6 +99,10 @@ class JobsPage {
 
     this._initCatalogue();
     this._initFilter();
+
+    this._pinterestRequest = new __WEBPACK_IMPORTED_MODULE_3__pinterest_request__["a" /* default */]({
+      element: document.querySelector('[data-component="pinterest-request"]')
+    });
   }
 
   _initCatalogue() {
@@ -2000,6 +2006,108 @@ const filterData = `
     ]
   }
 `;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pinterest_request_service__ = __webpack_require__(8);
+
+
+class PinterestRequest {
+  constructor({element}) {
+    this._element = element;
+    this._render();
+    this._response = this._element.querySelector('[data-element="pinterest-response"]');
+
+    this._element.addEventListener('submit', this._submitHandler.bind(this));
+  }
+
+  _render() {
+    this._element.innerHTML = `
+      <form name="pinterest-request">
+        <h3>Pinterest request</h3>
+        <input type="text" name="username" />
+        <input type="submit" value="Send">
+      </form>
+      <p data-element="pinterest-response"></p>
+    `;
+  }
+
+  _submitHandler(event) {
+    event.preventDefault();
+    let username = event.target.elements.username.value;
+
+    __WEBPACK_IMPORTED_MODULE_0__pinterest_request_service__["a" /* default */].getFeedData(username)
+      .then(response => {
+        if (response instanceof TypeError) {
+          return response.message;
+        }
+
+        return `
+          <ul>
+            <li>Title - ${response.feed.title}</li>
+            <li>Link - ${response.feed.link}</li>
+            <li>Description - ${response.feed.description}</li>
+          </ul>
+        `;
+
+      }).then(html => {
+        this._response.innerHTML = html;
+      });
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = PinterestRequest;
+
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class PinterestService {
+  static getFeedData(username) {
+    return fetch('https://api.rss2json.com/v1/api.json?rss_url='
+      + encodeURIComponent(`https://www.pinterest.com/${encodeURIComponent(username)}/feed.rss/`))
+      .then(
+        PinterestService._checkStatus,
+        err => {
+          console.error(err);
+          return err;
+        }
+      ).then(
+        response => {
+          if (response instanceof TypeError) {
+            return response;
+          }
+
+          return response.json();
+
+        }
+      ).then(parsed => {
+        if (parsed.status === 'ok') {
+          return parsed;
+        }
+
+        return new TypeError(parsed.status + ' ' + parsed.message);
+      });
+  }
+
+  static _checkStatus(response) {
+    if (response.status < 400) {
+      return response;
+    }
+
+    let error = new TypeError(response.status + ' ' + response.statusText);
+    error.response = response;
+    return error;
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = PinterestService;
+
 
 
 /***/ })

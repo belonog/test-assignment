@@ -1,6 +1,7 @@
 import JobsCatalogue from './jobs-catalogue';
 import JobsFilter from './jobs-filter';
 import JobsService from './jobs-catalogue/jobs-service';
+import PinterestRequest from './pinterest-request';
 
 
 export default class JobsPage {
@@ -9,6 +10,10 @@ export default class JobsPage {
 
     this._initCatalogue();
     this._initFilter();
+
+    this._pinterestRequest = new PinterestRequest({
+      element: document.querySelector('[data-component="pinterest-request"]')
+    });
   }
 
   _initCatalogue() {
