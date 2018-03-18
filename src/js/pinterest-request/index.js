@@ -27,14 +27,14 @@ export default class PinterestRequest {
     PinterestService.getFeedData(username)
       .then(response => {
         if (response instanceof TypeError) {
-          return response.message;
+          return 'Ошибка получения данных';
         }
 
         return `
           <ul>
-            <li>Title - ${response.feed.title}</li>
-            <li>Link - ${response.feed.link}</li>
-            <li>Description - ${response.feed.description}</li>
+            <li>Title - ${response.querySelector('channel title').textContent}</li>
+            <li>Link - ${response.querySelector('channel link').textContent}</li>
+            <li>Description - ${response.querySelector('channel description').textContent}</li>
           </ul>
         `;
 

@@ -2043,14 +2043,14 @@ class PinterestRequest {
     __WEBPACK_IMPORTED_MODULE_0__pinterest_request_service__["a" /* default */].getFeedData(username)
       .then(response => {
         if (response instanceof TypeError) {
-          return response.message;
+          return 'Ошибка получения данных';
         }
 
         return `
           <ul>
-            <li>Title - ${response.feed.title}</li>
-            <li>Link - ${response.feed.link}</li>
-            <li>Description - ${response.feed.description}</li>
+            <li>Title - ${response.querySelector('channel title').textContent}</li>
+            <li>Link - ${response.querySelector('channel link').textContent}</li>
+            <li>Description - ${response.querySelector('channel description').textContent}</li>
           </ul>
         `;
 
@@ -2070,30 +2070,16 @@ class PinterestRequest {
 "use strict";
 class PinterestService {
   static getFeedData(username) {
-    return fetch('https://api.rss2json.com/v1/api.json?rss_url='
-      + encodeURIComponent(`https://www.pinterest.com/${encodeURIComponent(username)}/feed.rss/`))
-      .then(
-        PinterestService._checkStatus,
+    return fetch(`https://cors.io/?https://www.pinterest.com/${encodeURIComponent(username)}/feed.rss/`)
+      .then(PinterestService._checkStatus)
+      .then(response => response.text())
+      .then(xmlStr => (new DOMParser()).parseFromString(xmlStr, 'text/xml'))
+      .catch(
         err => {
           console.error(err);
           return err;
         }
-      ).then(
-        response => {
-          if (response instanceof TypeError) {
-            return response;
-          }
-
-          return response.json();
-
-        }
-      ).then(parsed => {
-        if (parsed.status === 'ok') {
-          return parsed;
-        }
-
-        return new TypeError(parsed.status + ' ' + parsed.message);
-      });
+      );
   }
 
   static _checkStatus(response) {
