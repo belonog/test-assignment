@@ -19,6 +19,6 @@ export default class PinterestService {
 
     let error = new TypeError(response.status + ' ' + response.statusText);
     error.response = response;
-    return error;
+    throw error;
   }
 }

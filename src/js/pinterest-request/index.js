@@ -24,6 +24,7 @@ export default class PinterestRequest {
     event.preventDefault();
     let username = event.target.elements.username.value;
 
+    this._response.innerHTML = 'Loading...';
     PinterestService.getFeedData(username)
       .then(response => {
         if (response instanceof TypeError) {

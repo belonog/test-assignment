@@ -2040,6 +2040,7 @@ class PinterestRequest {
     event.preventDefault();
     let username = event.target.elements.username.value;
 
+    this._response.innerHTML = 'Loading...';
     __WEBPACK_IMPORTED_MODULE_0__pinterest_request_service__["a" /* default */].getFeedData(username)
       .then(response => {
         if (response instanceof TypeError) {
@@ -2089,7 +2090,7 @@ class PinterestService {
 
     let error = new TypeError(response.status + ' ' + response.statusText);
     error.response = response;
-    return error;
+    throw error;
   }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = PinterestService;
